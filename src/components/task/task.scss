@@ -1,0 +1,76 @@
+.task {
+    background-color: rgb(30, 22, 38);
+    padding: 15px;
+    border-radius: 10px;
+    width: 400px;
+    color: rgb(132, 125, 125);
+    cursor: pointer;
+    .header_task {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .task_title {
+            color: rgb(186, 182, 182);
+            margin-bottom: 10px;
+        }
+        .task_time {
+            font-size: 10px;
+        }
+    }
+    .task_content {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: start;
+        .marker {
+            border: 2px solid grey;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            min-height: 20px;
+        }
+        .buttons_task {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .task_edit {
+                .edit_icon {
+                    img {
+                        color: green;
+                    }
+                }
+            }
+        }
+        .task_discription {
+            margin-right: 10px;
+            width: 100%;
+            .show_discription {
+                font-size: 12px;
+            }
+            .edit_discription {
+                font-size: 12px;
+                width: 100%;
+                .edit_textarea {
+                    resize: none;
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 2px solid rgb(86, 84, 84);
+                }
+            }
+        }
+    }
+}
+
+.edit_textarea::-webkit-scrollbar {
+    width: 3px; /* ширина scrollbar */
+}
+.edit_textarea::-webkit-scrollbar-track {
+    background: none; /* цвет дорожки */
+}
+.edit_textarea::-webkit-scrollbar-thumb {
+    background-color: rgb(86, 84, 84); /* цвет плашки */
+    border-radius: 5px; /* закругления плашки */
+}
