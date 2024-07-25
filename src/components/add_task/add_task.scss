@@ -1,3 +1,36 @@
 .add-task {
+    background-color: rgb(30, 22, 38);
     color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    .add_title {
+        border: 2px solid rgb(86, 84, 84);
+        border-radius: 5px;
+    }
+    .add_discription {
+        
+        width: 100%;
+        border-radius: 5px;
+        .add_discription_textarea {
+            resize: none;
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: 2px solid rgb(86, 84, 84);
+            border-radius: 5px;
+        }
+    }
+    .add_date {
+        border: 2px solid rgb(86, 84, 84);
+        border-radius: 5px;
+    }
+    .button_add_task {
+        border: 2px solid rgb(86, 84, 84);
+        border-radius: 5px;
+    }
+    
 }
+

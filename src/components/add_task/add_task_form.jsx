@@ -32,7 +32,8 @@ function AddTaskForm (props) {
                 <input type="text" onChange={handleChangeNewTitle} />
             </div>
             <div className='add_discription'>
-                <input type="text" onChange={handleChangeNewDescription} />
+                {/* <input type="text" onChange={handleChangeNewDescription} /> */}
+                <textarea className='add_discription_textarea' name="addTask" onChange={handleChangeNewDescription}></textarea>
             </div>
             <div className='add_date'>
                 <input type="date" onChange={handleChangeNewDate} />

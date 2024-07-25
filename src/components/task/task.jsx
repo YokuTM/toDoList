@@ -10,7 +10,7 @@ function Task(props) {
 
     let status = props.active_status_tasks.filter((e) => {
        return e.task_id === props.task.id
-    })[0].status
+    })[0]?.status
 
 
     const [edit_status, set_edit_status] = useState (false)
@@ -21,13 +21,6 @@ function Task(props) {
     useEffect(()=>{
         set_activ_status(status)
     })
-
-    const elem = createElement('div')
-    document.body.append(elem)
-
-    {
-        
-    }
 
     function start_edit () {
         set_edit_status(true)
@@ -48,6 +41,11 @@ function Task(props) {
         close_edit()
         // console.log(editor)
     }
+
+    function deleteTask() {
+        props.deleteTask(props.task.id)
+    }
+
 
     return (
         <li className="task" onClick={change_active_status} >
@@ -70,7 +68,7 @@ function Task(props) {
                         </div>
                     </div>
                     <div className="task_delete">
-                        <img width='20px' height='20px' src={Trash} alt="" />
+                        <img onClick={deleteTask} width='20px' height='20px' src={Trash} alt="" />
                     </div>
                 </div>
             </div>
