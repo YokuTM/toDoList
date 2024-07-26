@@ -20,8 +20,8 @@ function App() {
 
   function get_init_tasks () {
     const tasksFromStorage = JSON.parse(localStorage.getItem('tasks')) 
-
-    return tasksFromStorage
+    
+    return tasksFromStorage ? tasksFromStorage : []
   }
 
   function editModalTask () {
