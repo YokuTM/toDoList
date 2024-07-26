@@ -1,36 +1,90 @@
 .add-task {
-    background-color: rgb(30, 22, 38);
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    .add_title {
-        border: 2px solid rgb(86, 84, 84);
-        border-radius: 5px;
-    }
-    .add_discription {
-        
+    gap: 25px;
+    .button_add_task_wrapper {
+        border: 2px solid rgb(60, 43, 80);
+        border-radius: 30px;
+        background-color: rgb(30, 22, 38);
+        height: 50px;
         width: 100%;
-        border-radius: 5px;
-        .add_discription_textarea {
-            resize: none;
-            width: 100%;
-            padding: 10px;
-            outline: none;
-            border: 2px solid rgb(86, 84, 84);
-            border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        opacity: 0.5;
+        transition: opacity 0.3s;
+        .button_add_task_title {
+            font-size: 20px;
+            text-align: center;
+        }
+        &:hover {
+            cursor: pointer;
+            opacity: 0.4;
         }
     }
-    .add_date {
-        border: 2px solid rgb(86, 84, 84);
-        border-radius: 5px;
+    .add_title {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: gray;
+        .add_title_input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid rgb(69, 69, 69);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .add_title_lable {
+        }
     }
-    .button_add_task {
-        border: 2px solid rgb(86, 84, 84);
+    .add_description {
+        width: 100%;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: gray;
+        .add_description_textarea {
+            resize: none;
+            width: 100%;
+            padding: 20px;
+            outline: none;
+            border: 1px solid rgb(86, 84, 84);
+            border-radius: 10px;
+        }
     }
-    
+    .add_date_wrapper {
+        display: flex;
+        justify-content: end;
+        border: 1px solid rgb(86, 84, 84);
+        border-radius: 10px;
+        .add_date {
+            font-family: "Roboto Mono", monospace;
+            color: gray;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            // border-radius: 15px;
+            width: 50%;
+            text-align: center;
+            height: 60px;
+            padding: 0 20px;
+        }
+    }
 }
 
+::-webkit-calendar-picker-indicator {
+    background-color: rgb(60, 43, 80);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.no_valid {
+    color: red;
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 25px;
+}
