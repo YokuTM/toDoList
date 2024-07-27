@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/github.io/toDoList/static/css/main.a197cd93.css",
-    "main.js": "/github.io/toDoList/static/js/main.74458573.js",
-    "static/js/453.ed3810f9.chunk.js": "/github.io/toDoList/static/js/453.ed3810f9.chunk.js",
-    "static/media/trash.png": "/github.io/toDoList/static/media/trash.1ca72dacee616eb5364b.png",
-    "index.html": "/github.io/toDoList/index.html",
-    "main.a197cd93.css.map": "/github.io/toDoList/static/css/main.a197cd93.css.map",
-    "main.74458573.js.map": "/github.io/toDoList/static/js/main.74458573.js.map",
-    "453.ed3810f9.chunk.js.map": "/github.io/toDoList/static/js/453.ed3810f9.chunk.js.map"
+    "main.css": "/toDoList/static/css/main.a197cd93.css",
+    "main.js": "/toDoList/static/js/main.fe50d1a0.js",
+    "static/js/453.ed3810f9.chunk.js": "/toDoList/static/js/453.ed3810f9.chunk.js",
+    "static/media/trash.png": "/toDoList/static/media/trash.1ca72dacee616eb5364b.png",
+    "index.html": "/toDoList/index.html",
+    "main.a197cd93.css.map": "/toDoList/static/css/main.a197cd93.css.map",
+    "main.fe50d1a0.js.map": "/toDoList/static/js/main.fe50d1a0.js.map",
+    "453.ed3810f9.chunk.js.map": "/toDoList/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a197cd93.css",
-    "static/js/main.74458573.js"
+    "static/js/main.fe50d1a0.js"
   ]
 }
