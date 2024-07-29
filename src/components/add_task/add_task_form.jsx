@@ -4,9 +4,9 @@ import {useState, useRef} from "react";
 
 function AddTaskForm (props) {
 
-    const [valid_state, set_valid_state] = useState (true)
+    const [validState, setValidState] = useState (true)
 
-    const [new_task, set_new_task] = useState({
+    const [newTask, setNewTask] = useState({
         title:'',
         description:'',
         time:''
@@ -18,24 +18,24 @@ function AddTaskForm (props) {
     let dateInput = useRef()
 
     function handleChangeNewTitle(event) {
-		set_new_task({...new_task, title: event.nativeEvent.target.value})
+		setNewTask({...newTask, title: event.nativeEvent.target.value})
 	}
 
     function handleChangeNewDescription(event) {
-		set_new_task({...new_task, description: event.nativeEvent.target.value})
+		setNewTask({...newTask, description: event.nativeEvent.target.value})
 	}
 
     function handleChangeNewDate(event) {
-		set_new_task({...new_task, time: event.nativeEvent.target.value})
+		setNewTask({...newTask, time: event.nativeEvent.target.value})
 	}
 
     function add_task () {
         if (titleInput.current.value.trim() && descriptionInput.current.value.trim() && dateInput.current.value.trim()) {
-            props.update_tasks([new_task])
+            props.update_tasks([newTask])
             resetInputs()
-            set_valid_state(true)
+            setValidState(true)
         } else {
-            set_valid_state(false)
+            setValidState(false)
         }
     }
 
@@ -45,7 +45,7 @@ function AddTaskForm (props) {
         descriptionInput.current.value = ''
         dateInput.current.value = ''
         //Сбрасываем состояние
-        set_new_task({
+        setNewTask({
             title:'',
             description:'',
             time:''
@@ -66,7 +66,7 @@ function AddTaskForm (props) {
             <div className='add_date_wrapper'>
                  <input ref={dateInput}  className='add_date' type="date" onChange={handleChangeNewDate} />
             </div>
-            {!valid_state&&<div className='no_valid' >Fill in all the fields !!!</div>}
+            {!validState&&<div className='no_valid' >Fill in all the fields !!!</div>}
         </div>
 )
 }

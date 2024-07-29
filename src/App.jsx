@@ -6,13 +6,16 @@ import SortPanel from './components/sort_panel/Sort_panel';
 
 import Trash from './trash.png'
 
+import SortButton from './components/sort_button/Sort_button';
+
+
 
 function App() {
 
-  function create_active_status_tasks () {
+  function createActiveStatusTasks () {
     return tasks.map((e)=>{
       return {
-        task_id:e.id,
+        taskId:e.id,
         status: false
       }
     })
@@ -26,14 +29,14 @@ function App() {
 
   function editModalTask () {
 
-    if (title_modal.current.value.trim() && description_modal.current.value.trim() && time_modal.current.value.trim()) {
+    if (titleModal.current.value.trim() && descriptionModal.current.value.trim() && timeModal.current.value.trim()) {
       let update_tasks = tasks.map((e)=>{
-        if (e.id === modal_state.id) {
+        if (e.id === modalState.id) {
           return {
-            title:title_modal.current.value,
-            description: description_modal.current.value,
-            time: time_modal.current.value,
-            status_task: modal_state.status_task,
+            title:titleModal.current.value,
+            description: descriptionModal.current.value,
+            time: timeModal.current.value,
+            statusTask: modalState.statusTask,
             id:e.id
           }
         } else {
@@ -41,30 +44,30 @@ function App() {
         }
       })
   
-      set_tasks([...update_tasks])
-      set_valid_state(true)
-      close_modal()
+      setTasks([...update_tasks])
+      setValidState(true)
+      closeModal()
     } else {
-      set_valid_state(false)
+      setValidState(false)
     } 
   }
 
-  const title_modal = useRef()
-  const description_modal = useRef()
-  const time_modal = useRef()
+  const titleModal = useRef()
+  const descriptionModal = useRef()
+  const timeModal = useRef()
 
-  const [tasks, set_tasks] = useState(get_init_tasks)
-  const [displayTasks, set_display_tasks] = useState([])
+  const [tasks, setTasks] = useState(get_init_tasks)
+  const [displayTasks, setDisplayTasks] = useState([])
 
-  const [active_status_tasks, set_active_status_tasks] = useState(create_active_status_tasks)
+  const [activeStatusTasks, setActiveStatusTasks] = useState(createActiveStatusTasks)
 
-  const [sorting_type, set_sorting_type] = useState('ALL')
+  const [sortingType, setSortingType] = useState('ALL')
 
-  const [modal_status, set_modal_status] = useState(false)
+  const [modalStatus, setModalStatus] = useState(false)
 
-  const [modal_state, set_modal_state] = useState({})
+  const [modalState, setModalState] = useState({})
 
-  const [valid_state, set_valid_state] = useState (true)
+  const [validState, setValidState] = useState (true)
 
   function sortingTasksToDate (a,b) {
     if (a.time > b.time) {
@@ -78,21 +81,19 @@ function App() {
   }
 
   function sortingTasks (type) {
-    console.log(type)
-    let task_list = []
+    let taskList = []
 
     if (type === 'ALL') {
-      task_list= [...tasks]
+      taskList= [...tasks]
     } else if (type === 'TIME') {
-      task_list= [...tasks]
-      task_list.sort(sortingTasksToDate)
+      taskList= [...tasks]
+      taskList.sort(sortingTasksToDate)
     } else  {
-      task_list = tasks.filter((e)=>{
-        return e.status_task === type
+      taskList = tasks.filter((e)=>{
+        return e.statusTask === type
       })
     }
-    console.log(task_list)
-    return task_list
+    return taskList
   }
 
 
@@ -102,23 +103,23 @@ function App() {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    set_display_tasks(sortingTasks(sorting_type))
+    setDisplayTasks(sortingTasks(sortingType))
 
-    set_active_status_tasks(create_active_status_tasks)
+    setActiveStatusTasks(createActiveStatusTasks)
 
   },[tasks])
 
   useEffect(()=>{
-    set_display_tasks(sortingTasks(sorting_type))
-  },[sorting_type])
+    setDisplayTasks(sortingTasks(sortingType))
+  },[sortingType])
 
   useEffect(()=>{
-    if(modal_state.id) {
-      set_modal_status(true)
+    if(modalState.id) {
+      setModalStatus(true)
     }
-  },[modal_state])
+  },[modalState])
 
-  function update_tasks (new_tasks) {
+  function updateTasks (newTasks) {
 
     let ids = tasks.map((t) => {
       return t.id
@@ -127,58 +128,46 @@ function App() {
     //Выставляем айдишник для новой задачи
     const maxIdValue = ids.length  ? Math.max(...ids) + 1 : 1
 
-    new_tasks[0].id = maxIdValue
+    newTasks[0].id = maxIdValue
 
-    new_tasks[0].status_task = 'NOT READY'
+    newTasks[0].statusTask = 'NOT READY'
 
-    set_tasks([...new_tasks, ...tasks])
+    setTasks([...newTasks, ...tasks])
 
   }
 
-  function change_active_status (task_id) {
+  function changeEditorStatus (taskId) {
     // Меняем статус задач
-    const update_status = active_status_tasks.map((e)=>{
-      if (e.task_id===task_id) {
+    const update_status = activeStatusTasks.map((e)=>{
+      if (e.taskId===taskId) {
         return {
-          task_id:e.task_id,
+          taskId:e.taskId,
           status: true
         }
       } else {
         return {
-          task_id:e.task_id,
+          taskId:e.taskId,
           status: false
         }
       }
     })
 
-    let modal_state = tasks.filter((e)=>{
-      return e.id === task_id
+    let modalState = tasks.filter((e)=>{
+      return e.id === taskId
     })
-    set_modal_state({...modal_state[0]})
-    set_active_status_tasks(update_status)
-  }
-
-  function editTask(task) {
-    const taskId = task.id
-    const updateTasksList = tasks.map((element) => {
-      if (taskId === element.id) {
-        return task
-      } else {
-        return element
-      }
-    })
-    set_tasks(updateTasksList)
+    setModalState({...modalState[0]})
+    setActiveStatusTasks(update_status)
   }
   
     function deleteTask(id) {
       const updateTasksList = tasks.filter((element) => {
         return element.id !== id
       })
-      set_tasks(updateTasksList)
+      setTasks(updateTasksList)
     }
 
   function changeTaskStatus (task) {
-    let update_tasks = tasks.map ((e)=>{
+    let updateTasks = tasks.map ((e)=>{
       if (e.id === task.id) {
         return task
       } else {
@@ -186,29 +175,29 @@ function App() {
       }
     })
 
-    set_tasks(update_tasks)
+    setTasks(updateTasks)
   }
 
   function changeSortingTipe (value) {
-    set_sorting_type(value)
+    setSortingType(value)
   }
 
-  function close_modal () {
-    set_modal_state({})
-    set_modal_status(false)
+  function closeModal () {
+    setModalState({})
+    setModalStatus(false)
   }
 
   function changeModalTaskStatus (type) {
-    modal_state.status_task = type
-    set_modal_state({...modal_state})
+    modalState.statusTask = type
+    setModalState({...modalState})
   }
 
   function deleteModalTask () {
-    let update_tasks = tasks.filter((e)=>{
-      return e.id !== modal_state.id
+    let updateTasks = tasks.filter((e)=>{
+      return e.id !== modalState.id
     })
 
-    set_tasks(update_tasks)
+    setTasks(updateTasks)
   }
 
   return (
@@ -218,54 +207,53 @@ function App() {
         </div>
       <div className='app_content'>
         <div className='add_tasks_wrapper'>
-            <AddTaskForm  update_tasks={update_tasks}/>
+            <AddTaskForm  update_tasks={updateTasks}/>
         </div>
         <div className='task_list_wrapper'>
           <SortPanel changeSortingTipe={changeSortingTipe} />
         {displayTasks.length===0&&<div className='no_tasks' >No tasks</div>}
         <ul className='task_list' >
             {displayTasks.map((elem) => {
-                return <Task changeTaskStatus={changeTaskStatus} deleteTask={deleteTask} editTask={editTask} change_active_status={change_active_status}  active_status_tasks={active_status_tasks} task= {elem} />
+                return <Task changeTaskStatus={changeTaskStatus} deleteTask={deleteTask} changeEditorStatus={changeEditorStatus}  activeStatusTasks={activeStatusTasks} task= {elem} />
             })
             }
         </ul>
         </div>
       </div>
-      {modal_status&&
+      {modalStatus&&
       <div className='modal_wrapper'>
-      <div onClick={close_modal}  className='close_modal'>X</div>
+      <div onClick={closeModal}  className='close_modal'>X</div>
       <div className='modal'>
-          {!valid_state&&<div className='no_valid_modal' >Fill in all the fields !!!</div>}
+          {!validState&&<div className='no_valid_modal' >Fill in all the fields !!!</div>}
           <div className='modal_title' >
-              <input ref={title_modal} defaultValue={modal_state.title} className='modal_title_input' type="text"  />
+              <input ref={titleModal} defaultValue={modalState.title} className='modal_title_input' type="text"  />
           </div>
           <div className='model_description'>
-              <textarea ref={description_modal} defaultValue={modal_state.description}  placeholder='add Description :' rows='3' className='model_description_textarea' name="addTask" ></textarea>
+              <textarea ref={descriptionModal} defaultValue={modalState.description}  placeholder='add Description :' rows='3' className='model_description_textarea' name="addTask" ></textarea>
           </div>
           <div className='modal_date_wrapper'>
-               <input ref={time_modal} defaultValue={modal_state.time}  className='modal_date' type="date"  />
+               <input ref={timeModal} defaultValue={modalState.time}  className='modal_date' type="date"  />
           </div>
           <div className='modal_buttons'>
-            {/* <div  className='modal_done_wrapper'>
-                <div className='modal_done'>RESET</div>
-            </div> */}
             <div className="footer_task">
               <div className="status_task">
-                  <button onClick={()=>{
-                      changeModalTaskStatus('DONE')
-                  }} 
-                  style={{'backgroundColor':'rgb(2, 76, 12)', borderWidth: modal_state.status_task === 'DONE'? '1px':'0px'}} className='sort_button'>DONE</button>
-                  <button onClick={()=>{
-                      changeModalTaskStatus('NOT READY')
-                  }}
-                  style={{'backgroundColor':'rgb(146, 28, 28)',borderWidth: modal_state.status_task === 'DONE'? '0px':'1px'}} className='sort_button'>NOT READY</button>
+              <SortButton changeTaskStatus={changeModalTaskStatus} type={{
+                        color: 'rgb(2, 76, 12)',
+                        active: modalState.statusTask==='DONE',
+                        value: 'DONE'
+              }} />
+               <SortButton changeTaskStatus={changeModalTaskStatus} type={{
+                        color: 'rgb(146, 28, 28)',
+                        active: modalState.statusTask==='NOT READY',
+                        value: 'NOT READY'
+                }} />
               </div>
               <div className="task_delete">
                       <img onClick={deleteModalTask} width='30px' height='30px' src={Trash} alt="" />
               </div>
           </div>
-          <div  className='modal_done_wrapper'>
-                <div onClick={editModalTask} className='modal_done'>Edit</div>
+          <div onClick={editModalTask} className='modal_done_wrapper'>
+                <div  className='modal_done'>Edit</div>
           </div>
         </div>
       </div>

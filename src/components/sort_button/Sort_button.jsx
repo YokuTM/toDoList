@@ -1,12 +1,12 @@
 function SortButton(props) {
 
-    function changeSortingTipe () {
-        props.changeSortingTipe(props.type.value)
+    function changeTaskStatus () {
+        props.changeTaskStatus(props.type.value)
     }
 
     return (
         <button onClick={()=>{
-            changeSortingTipe('ALL')
+            changeTaskStatus('ALL')
           }} style={{'backgroundColor':props.type.color, 'border-width' :props.type.active?'1px':'0px'}} className='sort_button'>{props.type.value}</button>
     )
 }

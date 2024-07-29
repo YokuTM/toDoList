@@ -22,14 +22,14 @@
     .task_list_wrapper {
       margin-top: 50px;
       height: calc(100% - 50px);
-      width: 30%;
+      min-width: 30%;
       .sort_buttons {
         display: flex;
         justify-content: space-between;
         padding-bottom: 40px;
         .sort_button {
           color: white;
-          padding: 20px;
+          padding: 2ex;
           letter-spacing: 3px;
           font-size: 15px;
           border: 1px solid rgb(169, 163, 174);
@@ -51,6 +51,7 @@
       }
     }
     .add_tasks_wrapper {
+      margin-top: 50px;
       height: 100%;
       width: 20%;
       padding-top: 200px;
